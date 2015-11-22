@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	  <meta content="yes" name="apple-mobile-web-app-capable" />
+	  <meta content="yes" name="apple-touch-fullscreen" />
+	  <meta content="telephone=no,email=no" name="format-detection" />
+
+	  <link rel="stylesheet" href="../dist/css/main.css">
+	  <link rel="stylesheet" type="text/css" href="../dist/lib/bootstrap/css/bootstrap.css">
+	  <script src="http://news.sohu.com/upload/commonzzx/jquery-2.1.1.min.js"></script>
+	  <script type="text/javascript" src="../dist/lib/bootstrap/js/bootstrap.min.js"></script>
+	  <script type="text/javascript" src="../dist/lib/artTemplate/artTemplate.js"></script>
+	  
+	 
+	<title>汇总</title>
+	<style type="text/css">
+		#isohu-topbar *{
+			box-sizing:content-box;
+			-webkit-box-sizing:content-box;
+		}
+		#isohu-topbar .simple-btn{
+			box-sizing:border-box;
+			-webkit-box-sizing:border-box;
+		}
+		.simple-email-wrapper input{
+			line-height: 14px;
+		}
+	</style>
+
+</head>
+<body>
+	 <link type="text/css" rel="stylesheet" href="http://css.sohu.com/upload/global1.4.1.css" />
+	  <link type="text/css" rel="stylesheet" href="http://news.sohu.com/upload/itoolbar/channel/itoolbar.201312131742.css" charset="UTF-8" />
+	<div data-type="roll" data-appid="1077" id="isohu-topbar"></div>
+	<script src="http://news.sohu.com/upload/itoolbar/itoolbar.channel.loader.201403191209.js" charset="UTF-8"></script>
+	<div class="nav">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="nav-caption">
+					<img src="../dist/img/ydgf.png" alt="" class="ydgf">
+					<p class="detail-caption">
+						什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么什么是移动工坊是什么?
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<img src="../dist/img/phone.png" alt="" class="mobiePhone">
+			</div>
+			
+		</div>
+	</div>
+
+	
+	
+	<div class="yu-container">	
+	    <div class="yu-content-box">
+	    	<div class="row" id="load-content">
+				<!-- <div class="col-md-6 h5-content">
+					<div class="thumbnail">
+					  <a href="">
+					  	<img src="img/one.png" alt="...">
+					  </a>
+				      
+				      <div class="yu-caption">
+				        <p>一秒钟到底有多长?HOW LONG IS ONE SECOND?一秒钟到底有多长?HOW LONG IS ONE SECOND?</p>
+				        <span class="no-code"></span>
+				      </div>
+				    </div>
+				</div> -->		
+			</div>
+	    </div>
+	    <script id="load-content-tpl" type="text/html">  
+	        {{each $data as item}}
+	        	<div class="col-md-6 h5-content">
+					<div class="thumbnail">
+					  <a href="">
+					  	<img src="{{item.img}}" alt="">
+					  </a>
+				      
+				      <div class="yu-caption clearfix">
+				        <p>{{item.content}}</p>
+				        <span class="no-code">{{item.number}}</span>
+				      </div>
+				    </div>
+				</div>
+	        {{/each}} 
+	    </script>  
+	    <script>  
+	        
+	        // var html = template('load-content-tpl', h5_data);  
+	        // document.getElementById("load-content").innerHTML = html;  
+	    </script>
+	    <script type="text/javascript" src="../dist/js/h5data.min.js"></script>
+	    <div class="yu-pagination">
+			<div class="first-end clearfix">
+				<a href="javascript:void(0)" class="first-page">首页</a>
+				<a href="javascript:void(0)" class="last-page">末页</a>
+			</div>
+			<!-- <div class="left-pages">
+				<a href="" class="go-left"></a>
+				<a href="" class="yu-page"></a>
+				<a href="" class="yu-page"></a>
+				<a href="" class="yu-page"></a>
+			</div>
+			<span>...</span>
+			<div class="right-pages">
+				
+				<a href="" class="yu-page"></a>
+				<a href="" class="yu-page"></a>
+				<a href="" class="yu-page"></a>
+				<a href="" class="go-right"></a>
+			</div> -->
+			<div class="yu-pages clearfix" id="pages-box">
+				<!-- <a href="" class="go-left">&lt</a>
+				<a href="" class="yu-page">1</a>
+				<a href="" class="yu-page">2</a>
+				<a href="" class="yu-page">3</a>
+				<a href="" class="go-right">&gt</a> -->
+			</div>
+			<div class="pages-go clearfix">
+				<input type="text" class="page-num" placeholder="1" onkeyup="checkNum(event)" style="ime-mode:Disabled">
+				<a href="javascript:void(0)" class="page-go">Go</a>
+			</div>
+
+			<script type="text/javascript" id="pagination-tpl">
+				<a href="javascript:void(0)" class="go-left">&lt</a>
+				 {{each $data as item index}}
+				 	<a href="javascript:void(0)" class="yu-page" data-page="{{item}}">{{item}}</a>
+				 {{/each}}
+				 <a href="javascript:void(0)" class="go-right">&gt</a>
+
+			</script>
+
+			<script type="text/javascript">
+				function checkNum(){
+					if(!(event.keyCode==46)&&!(event.keyCode==8)&&!(event.keyCode==37)&&!(event.keyCode==39))
+					if(!((event.keyCode>=48&&event.keyCode<=57)||(event.keyCode>=96&&event.keyCode<=105)))
+					 // event.returnValue=false;
+					$(".page-num").val(1);
+				}
+
+				var numPerPage = 10;
+
+				var pageSize = Math.ceil(h5_data.length/numPerPage);
+				var pagetpl_data = [];
+				var currentPage;
+				// var historyState = [];
+				(function(){
+					for(var i = 0;i<pageSize;i++){
+						pagetpl_data.push(i+1);
+					}	
+				})();
+				//初始化pageNum
+				var pagetpl = template('pagination-tpl', pagetpl_data);  
+	        	document.getElementById("pages-box").innerHTML = pagetpl;
+	        	//初始化第一页
+	        	renderByPageNum(1);
+	        	
+	        	//翻页
+	        	$(".yu-page").click(function(){
+	        		var pageNum = $(this).data("page");
+	        		renderByPageNum(pageNum);
+	        	});
+
+	        	$(".first-page").click(function(){
+	        		renderByPageNum(1);
+	        	});
+
+	        	$(".last-page").click(function(){
+	        		renderByPageNum(pageSize);
+	        	});
+
+	        	$(".page-go").click(function(){
+	        		var pageNum = parseInt($(".page-num").val());
+	        		if(pageNum>pageSize){
+	        			renderByPageNum(pageSize);
+	        		}else{
+	        			renderByPageNum(pageNum);
+	        		}
+	        		
+	        	});
+
+	        	$(".go-left").click(function(){
+	        		if(currentPage>1){
+						renderByPageNum(currentPage-1);
+	        		}	
+	        	});
+	        	$(".go-right").click(function(){
+	        		if(currentPage<pageSize){
+	        			renderByPageNum(currentPage+1);
+	        		}       		
+	        	});
+
+	        	      	
+				
+	        	function renderByPageNum(pageNum){
+	        		changeHistroy(pageNum); 
+	        		renderByPageNumWithoutHistory(pageNum);
+	 
+	        	};
+	        	
+	        	function renderByPageNumWithoutHistory(pageNum){
+	        		currentPage = pageNum;		 		
+	        		$(".yu-page").removeClass("yu-page-active");
+	        		$(".yu-page").eq(pageNum-1).addClass("yu-page-active");
+	        		if(pageNum*10>h5_data.length){
+	        			currentPageData = h5_data.slice((pageNum-1)*10,h5_data.length);
+	        		}else{
+	        			currentPageData = h5_data.slice((pageNum-1)*10,(pageNum)*10);
+	        		}
+	        		currentPageContent = template('load-content-tpl', currentPageData);  
+	            	document.getElementById("load-content").innerHTML = currentPageContent;
+	        	};
+	        	
+	        	window.onpopstate = function(){
+	        		renderByPageNumWithoutHistory(history.state.page);
+	        	};
+	        	
+	        	function changeHistroy(pageNum){
+	        		var historyState = {};
+	        		historyState.page = pageNum;
+	        		currentPage = pageNum;
+	        		history.pushState(historyState, "页面标题", "#page="+pageNum);
+	        	};
+
+
+
+
+	        	function backTop(){
+	        		// var scrollTop;
+	        		var timer = null;
+	        		
+
+	        		timer = setInterval(function(){
+	        			var scrollTop = document.documentElement.scrollTop||$("body").scrollTop();
+	        			var speed = -scrollTop/3;
+	        			document.body.scrollTop = document.documentElement.scrollTop = scrollTop + speed;
+
+	        			if(scrollTop == 0){
+		        			clearInterval(timer);
+		        		}
+	        		},30);
+
+
+	        	}
+	        	
+			</script>
+		</div>
+
+		
+		
+	</div>
+
+	<footer class="foot">
+		<div class="row foot-doc">
+			<div class="col-md-4 foot-left">
+				<h4>什么是移动工坊</h4>
+				<p>什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊
+					什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊
+					什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊什么是移动工坊
+					什么是移动工坊什么是移动工坊什么是移动工坊
+				</p>
+			</div>
+			<div class="col-md-4 foot-center">
+				<h4>我们是谁</h4>
+				<div class="sorts clearfix">
+					<!-- <div class="col-md-3"> -->
+						<label for="">策划：</label>
+					<!-- </div> -->
+					<!-- <div class="col-md-9"> -->
+						<p>
+							某某某/某某某/某某/某某/某某某
+         					某某/某某/某某
+         				</p>
+					<!-- </div> -->
+					
+					
+					
+				</div>
+				<div class="sorts clearfix">
+					<label for="">设计：</label>
+					<p>某某某/某某某/某某/某某/某某某
+         			 某某/某某/某某
+         			</p>
+				</div>
+				<div class="sorts clearfix">
+					<label for="">技术：</label>
+					<p>某某某/某某某/某某/某某/某某某
+         			 某某/某某/某某
+         			</p>
+				</div>
+			</div>
+			<div class="col-md-4 foot-right" >
+				<img src="../dist/img/bigewm.png" alt="">
+				<p>关注移动工坊官方微信获取更多移动资讯</p>
+			</div>
+			
+		</div>
+		
+	</footer>
+
+	<div class="yu-right-box clearfix">
+		<a href="javascript:void(0)" class="backTop">
+			<img src="../dist/img/backtop.png" alt="">
+			<!-- <img src="../dist/img/backtop-hover.png" alt=""> -->
+		</a>
+		<a href="javascript:void(0)" class="yu-share" >
+			<img src="../dist/img/share.png" alt="">
+			<img src="../dist/img/share-hover.png" alt="" class="share-hover">
+		</a>
+		<a href="javascript:void(0)" class="erweima">
+			<img src="../dist/img/ewm.png" alt="">
+			<img src="../dist/img/ewm-hover.png" class="ewm-hover" alt="">
+		</a>
+
+		<div class="yu-share-box clearfix">
+			<a href="javascript:void(0)" class="weixin">
+				<img src="../dist/img/weixin.png" alt="">
+			</a>
+			<a href="javascript:void(0)" class="timeline">
+				<img src="../dist/img/timeline.png" alt="">
+			</a>
+			<a href="javascript:void(0)" class="flower">
+				<img src="../dist/img/flower.png" alt="">
+			</a>
+			<a href="javascript:void(0)" class="sina">
+				<img src="../dist/img/sina.png" alt="">
+			</a>
+			<a href="javascript:void(0)" class="qq">
+				<img src="../dist/img/qq.png" alt="">
+			</a>
+			<a href="javascript:void(0)" class="qzone">
+				<img src="../dist/img/qzone.png" alt="">
+			</a>
+		</div>
+
+		<div class="yu-erweima-box">
+			<img src="../dist/img/erweima.png" alt="">
+		</div>
+	</div>
+
+	
+	
+
+<script type="text/javascript">
+	$(".qzone").click(function(){
+		var evt = document.createEvent('Event');    
+        evt.initEvent("click",true,true);
+		$(".bds_qzone")[0].dispatchEvent(evt);
+	});
+	$(".weixin").click(function(){
+		var evt = document.createEvent('Event');    
+        evt.initEvent("click",true,true);
+		$(".bds_weixin")[0].dispatchEvent(evt);
+	});
+	// $(".timeline").click(function(){
+	// 	var evt = document.createEvent('Event');    
+ //        evt.initEvent("click",true,true);
+	// 	$(".bds_timeline")[0].dispatchEvent(evt);
+	// });
+	$(".sina").click(function(){
+		var evt = document.createEvent('Event');    
+        evt.initEvent("click",true,true);
+		$(".bds_tsina")[0].dispatchEvent(evt);
+	});
+	$(".qq").click(function(){
+		var evt = document.createEvent('Event');    
+        evt.initEvent("click",true,true);
+		$(".bds_tqq")[0].dispatchEvent(evt);
+	});
+
+	$(window).scroll(function(){
+		var scrollTop = document.documentElement.scrollTop||$("body").scrollTop();
+		// console.log(scrollTop);
+		 if(scrollTop>1200){
+			 $(".backTop").show();
+			$(".yu-share-box").css("top","47px");
+			$(".yu-erweima-box").css("top","95px");
+			$(".yu-right-box").css("top","40%");
+		 }else{
+		 	 $(".yu-share-box").css("top","-1px");
+		 	 $(".yu-erweima-box").css("top","47px");
+		 	$(".yu-right-box").css("top","50%");
+			 $(".backTop").hide();
+		 }
+
+		 $(".backTop").click(function(){
+    		backTop();	
+    	});
+	});
+</script>
+	<div class="bdsharebuttonbox" style="display:none">	
+		<a href="javascript:void(0)" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+		<a href="javascript:void(0)" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+		<a href="javascript:void(0)" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+		<a href="javascript:void(0)" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+		<a href="javascript:void(0)" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	</div>
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+</body>
+</html>
